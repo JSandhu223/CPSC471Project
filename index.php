@@ -7,4 +7,6 @@ include "header.php";
 
 HOME PAGE
 
+</body>
+
 </html>

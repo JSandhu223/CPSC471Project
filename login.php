@@ -13,3 +13,4 @@ include "header.php";
         </form>
     </div>
 </section>
+</body>
