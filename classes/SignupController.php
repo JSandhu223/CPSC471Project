@@ -52,8 +52,12 @@ class SignupController extends SignupHandler
         }
 
         if ($this->usernameExists()) {
-            header("location: ../signup.php?error=username-already-exists");
+            header("location: ../signup.php?error=username-already-in-use");
             exit();
+        }
+
+        if ($this->emailExists()) {
+            header("location: ../signup.php?error=email-already-in=use");
         }
 
         // If none of these errors handlers are triggered, then create the user
@@ -143,5 +147,6 @@ class SignupController extends SignupHandler
     // This is to check if the inputted email already exists in our database
     private function emailExists()
     {
+        return $this->checkEmailExists($this->email);
     }
 }

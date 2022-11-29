@@ -38,7 +38,7 @@ class SignupHandler extends DBHandler
         // Execute the query
         $query = $stmt->execute(array($username));
 
-        // Error if query fails to execute
+        // Error check if statement fails to execute
         if (!$query) {
             $query = null;
             $stmt = null;
@@ -47,7 +47,35 @@ class SignupHandler extends DBHandler
         }
 
         // If we reach here, check to see if any rows were returned from the query
-        if ($stmt->rowCount()) {
+        // If there were, that means the username already exists!
+        if ($stmt->rowCount() > 0) {
+            $alreadyExists = true;
+        }
+
+        return $alreadyExists;
+    }
+
+    public function checkEmailExists($email)
+    {
+        $alreadyExists = false;
+
+        // Create a prepared statement (prevents SQL injection)
+        $stmt = $this->connect()->prepare("SELECT * FROM USER WHERE email = ?;");
+
+        // Execute the query
+        $query = $stmt->execute(array($email));
+
+        // Error check if statement fails to execute
+        if (!$query) {
+            $query = null;
+            $stmt = null;
+            header("location: ../signup.php?error=failed-to-execute-statement");
+            exit();
+        }
+
+        // If we reach here, check to see if any rows were returned from the query
+        // If there were, that means the email already exists!
+        if ($stmt->rowCount() > 0) {
             $alreadyExists = true;
         }
 
