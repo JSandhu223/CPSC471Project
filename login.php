@@ -9,7 +9,7 @@ include "header.php";
             <input type="text" name="email" placeholder="Email" />
             <input type="password" name="pwd" placeholder="Password" />
             <br>
-            <button type="submit" name="submit">LOGIN</button>
+            <button type="submit" name="login-submit">LOGIN</button>
         </form>
     </div>
 </section>
