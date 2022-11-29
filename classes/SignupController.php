@@ -1,6 +1,6 @@
 <?php
 
-class SignupController
+class SignupController extends SignupHandler
 {
 
     private $username;
@@ -10,12 +10,12 @@ class SignupController
 
     // Constructor
     // This is called when a user fills in the sign up page and hits the submit button
-    public function __construct($username, $email, $pwd, $pwdRepeat)
+    public function __construct($username, $email, $password, $passwordRepeat)
     {
         $this->username = $username;
         $this->email = $email;
-        $this->pwd = $pwd;
-        $this->pwdRepeat = $pwdRepeat;
+        $this->password = $password;
+        $this->passwordRepeat = $passwordRepeat;
     }
 
     public function initiateSignup()
@@ -50,6 +50,9 @@ class SignupController
             header("location: ../signup.php?error=passwordmismatch");
             exit();
         }
+
+        // If none of these errors handlers are triggered, then create the user
+        $this->createUser($this->username, $this->email, $this->password);
     }
 
     private function emptyField()
