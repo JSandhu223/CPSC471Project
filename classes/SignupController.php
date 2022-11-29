@@ -125,4 +125,14 @@ class SignupController
 
         return $match;
     }
+
+    // This is to check if the username already exists in our database
+    private function usernameExists()
+    {
+    }
+
+    // This is to check if the inputted email already exists in our database
+    private function emailExists()
+    {
+    }
 }
