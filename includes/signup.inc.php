@@ -4,8 +4,8 @@
 if (isset($_POST["submit"])) {
 
 	// Grabbing the data from the sign up form
-	$uid = $_POST["uid"];
-	$pwd = $_POST["pwd"];
-	$pwdRepeat = $_POST["pwdRepeat"];
-	$email = $_POST["email"];
+	$username = $_POST["username"];
+    $email = $_POST["email"];
+	$password = $_POST["password"];
+	$passwordRepeat = $_POST["passwordRepeat"];
 }
