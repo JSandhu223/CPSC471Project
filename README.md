@@ -8,3 +8,7 @@
 1. **Open browser and type into the address bar:** `localhost:8000`
 
 Note: the default file that loads is *index.php*, so make sure that is the filename of the starting page
+
+## Database Connection
+
+*DBHandler.php* deals with connecting to the database. Be sure to modify the `$username` and `$password` fields!
