@@ -32,6 +32,18 @@ class SignupController
             header("location: ../signup.php?error=invalidusername");
             exit();
         }
+
+        if (!$this->isValidEmail()) {
+            // Send the user back to the sign up page with an error message in url
+            header("location: ../signup.php?error=invalidemail");
+            exit();
+        }
+
+        if (!$this->isValidPassword()) {
+            // Send the user back to the sign up page with an error message in url
+            header("locaton: ../signup.php?error=invalidpassword");
+            exit();
+        }
     }
 
     private function emptyField()
