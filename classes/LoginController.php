@@ -14,7 +14,7 @@ class LoginController extends LoginHandler
         $this->password = $password;
     }
 
-    public function initiateSignup()
+    public function initiateLogin()
     {
         // Check if any of the input fields are empty
         if ($this->emptyField()) {
