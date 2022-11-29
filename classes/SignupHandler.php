@@ -1,7 +1,7 @@
 <?php
 // THIS CLASS DEALS WITH QUERYING THE SIGN UP INFORMATION TO OUR DATABASE
 
-class SignupHander extends DBHandler
+class SignupHandler extends DBHandler
 {
 
     public function createUser($username, $email, $password)
