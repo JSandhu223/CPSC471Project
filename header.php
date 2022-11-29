@@ -19,9 +19,9 @@
 				</ul>
 				<ul class="user-navbar">
 					<?php
-						if (isset($_SESSION["userid"])) {
+						if (isset($_SESSION["username"])) {
 					?>
-							<li><a href="#"><?php echo $_SESSION["userid"]; ?></a></li>
+							<li><a href="#"><?php echo $_SESSION["username"]; ?></a></li>
 							<li><a href="includes/logout.inc.php">Logout</a></li>
 					<?php
 						}
