@@ -11,7 +11,7 @@ include "header.php";
             <input type="password" name="password" placeholder="Password" />
             <input type="password" name="passwordRepeat" placeholder="Repeat Password" />
             <br>
-            <button type="submit" name="submit">SIGN UP</button>
+            <button type="submit" name="signup-submit">SIGN UP</button>
         </form>
     </div>
 </section>
