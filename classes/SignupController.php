@@ -44,6 +44,12 @@ class SignupController
             header("locaton: ../signup.php?error=invalidpassword");
             exit();
         }
+
+        if (!$this->passwordMatch()) {
+            // Send the user back to the sign up page with an error message in url
+            header("location: ../signup.php?error=passwordmismatch");
+            exit();
+        }
     }
 
     private function emptyField()
@@ -107,5 +113,16 @@ class SignupController
         }
 
         return $valid;
+    }
+
+    private function passwordMatch()
+    {
+        $match = true;
+
+        if ($this->password != $this->passwordRepeat) {
+            $match = false;
+        }
+
+        return $match;
     }
 }
