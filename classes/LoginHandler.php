@@ -44,7 +44,10 @@ class LoginHandler extends DBHandler
 			exit();
         }
 
-        // If we reach here, it means the user was found in the USER table
+        // Start a session for the user the logged in
+		session_start();
+        $_SESSION["username"] = $row[0]["Username"];
+
         $row = null;
         $query = null;
         $stmt = null;
