@@ -69,7 +69,7 @@ class SignupController extends SignupHandler
         $isEmpty = false;
         $emptyInput = "";
 
-        if ($this->username == $emptyInput || $this->email == $emptyInput || $this->password == $emptyInput || $this->passwordRepeat == $emptyInput) {
+        if (empty($this->username) || empty($this->email) || empty($this->password) || empty($this->passwordRepeat)) {
             $isEmpty = true;
         }
 
