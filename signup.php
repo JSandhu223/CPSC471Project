@@ -13,7 +13,7 @@ include "header.php";
             <br>
             <button type="submit" name="signup-submit">SIGN UP</button>
         </form>
-    </div>
+    </div>test
 </section>
 
 </body>
