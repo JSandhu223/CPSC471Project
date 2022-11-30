@@ -23,23 +23,24 @@ class LoginHandler extends DBHandler
             exit();
         }
 
-        $query = $stmt->rowCount();
+        $numRows = $stmt->rowCount();
         // If the query returns no rows then display an error
-		if ($query == 0) {
+		if ($numRows == 0) {
             $query = null;
 			$stmt = null;
-			header("location: ../login.php?error=usernotfound");
+			header("location: ../login.php?error=user-not-found");
 			exit();
 		}
-
+        
+        // If we reach here it means at least 1 row was returned
         // This returns an array of the appropriate row that returns from our query
 		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $pwd = $row[0]["password"];
+        $pwd = $row[0]["Password"];
         if ($pwd !== $password) {
             $row = null;
             $query = null;
             $stmt = null;
-            header("location: ../login.php?error=incorrectpassword");
+            header("location: ../login.php?error=incorrect-password");
 			exit();
         }
 
