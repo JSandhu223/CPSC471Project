@@ -7,7 +7,7 @@ class LoginController extends LoginHandler
     private $password;
 
     // Constructor
-    // This is called when a user fills in the sign up page and hits the submit button
+    // This is called when a user fills in the login page and hits the submit button
     public function __construct($username, $password)
     {
         $this->username = $username;
@@ -18,7 +18,7 @@ class LoginController extends LoginHandler
     {
         // Check if any of the input fields are empty
         if ($this->emptyField()) {
-            // Send the user back to the sign up page with an error message in url
+            // Send the user back to the login page with an error message in url
             header("location: ../login.php?error=emptyinputfield");
             exit();
         }

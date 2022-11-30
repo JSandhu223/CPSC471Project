@@ -12,8 +12,8 @@ include "../classes/LoginController.php";
 // If the user clicked the submit button
 if (isset($_POST["login-submit"])) {
 
-    // Grabbing the data from the sign up form.
-    // This data will be sent to the SignupController.
+    // Grabbing the data from the login form.
+    // This data will be sent to the LoginController.
     $username = $_POST["username"];
     $password = $_POST["password"];
 

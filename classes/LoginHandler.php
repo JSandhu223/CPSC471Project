@@ -10,7 +10,7 @@ class LoginHandler extends DBHandler
         // Create a prepared statememt TO PREVENT SQL INJECTIONS
         $stmt = $this->connect()->prepare("SELECT * FROM USER WHERE username = ? AND password = ?;");
 
-        // Execute the query, where these 3 arguments replace the question marks in our prepared statement
+        // Execute the query, where these 2 arguments replace the question marks in our prepared statement
         $query = $stmt->execute(array($username, $password));
 
         // If the query doesn't execute return an error
