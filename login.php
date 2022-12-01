@@ -1,8 +1,8 @@
 <?php
-include "header.php";
+//include "header.php";
 ?>
 
-<section>
+<!-- <section>
     <div class="index-login-login">
         <h4>LOGIN</h4>
         <form action="includes/login.inc.php" method="post">
@@ -13,4 +13,4 @@ include "header.php";
         </form>
     </div>
 </section>
-</body>
+</body> -->
