@@ -31,31 +31,28 @@
         <h1>Product Name</h1>
     </div>
 
-    <section>
-        <div class="center">
-            <h4>Sign Up</h4>
-            <form action="includes/signup.inc.php" method="post">
-                <div class="txt_field">
-                    <input type="text" name="username" />
-                    <label>Username</label>
-                </div>
-                <div class="txt_field">
-                    <input type="text" name="email" />
-                    <label>Email</label>
-                </div>
-                <div class="txt_field">
-                    <input type="password" name="password" />
-                    <label>Password</label>
-                </div>
-                <div>
-                    <input type="password" name="passwordRepeat" />
-                    <label>Repeat Password</label>
-                </div>
-                <br>
-                <button type="submit" name="signup-submit">SIGN UP</button>
-            </form>
-        </div>
-    </section>
+    <div class="center">
+        <h1>Sign Up</h1>
+        <form action="includes/signup.inc.php" method="post">
+            <div class="txt_field">
+                <input type="text" name="username" />
+                <label>Username</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" name="email" />
+                <label>Email</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" name="password" />
+                <label>Password</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" name="passwordRepeat" />
+                <label>Repeat Password</label>
+            </div>
+            <button type="submit" name="signup-submit">Sign Up</button>
+        </form>
+    </div>
 
 </body>
 
