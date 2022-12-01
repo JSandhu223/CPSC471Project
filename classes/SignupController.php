@@ -58,6 +58,7 @@ class SignupController extends SignupHandler
 
         if ($this->emailExists()) {
             header("location: ../signup.php?error=email-already-in=use");
+            exit();
         }
 
         // If none of these errors handlers are triggered, then create the user
