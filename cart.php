@@ -10,7 +10,7 @@ session_start();
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/nav.css">
     <link rel="stylesheet" href="styles/list_preview.css">
-    <title>Signup</title>
+    <title>Cart</title>
 </head>
 
 <body>
