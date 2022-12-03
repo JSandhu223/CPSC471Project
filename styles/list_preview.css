@@ -1,0 +1,68 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.st_game:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
+}
+
+#heading {
+    color: white;
+    margin: 50px ;
+    text-align: center;
+}
+
+.st_game {
+    background: #303030;
+    width: 220px;
+    height: 400px;
+    margin: 10px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.game_image{
+    background: #156ba577;
+    height: 150px;
+    margin-bottom: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.st_game h2, .st_game p{
+    color: white;
+    text-align: center;
+}
+
+.st_game a{
+    background: #155c8b;
+    padding: 7px 7px;
+    top: 3px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    text-align: center;
+    margin: 40px;
+    border-radius: 4px;
+    margin-top: 110px;
+}
+
+.st_game a:hover{
+    cursor: pointer;
+}
+
+#checkout{
+    width: 250px;
+    text-decoration: none;
+    color: white;
+    background: #155c8b;
+    padding: 5px 15px;
+    border-radius: 5px;
+    display: block;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}

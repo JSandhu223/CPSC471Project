@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  margin: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.93);
+  height: 100vh;
+}
+.center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background: #303030;
+  border-radius: 5px;
+}
+.center h1{
+  color: white;
+  text-align: center;
+  padding: 25px 0;
+  border-bottom: 2px solid white;
+}
+.center form{
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+form .txt_field{
+  position: relative;
+  border-bottom: 2px solid white;
+  margin: 30px 0;
+}
+.txt_field input{
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+  color: white;
+}
+.txt_field label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: white;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  transition: .2s;
+}
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label{
+  font-size: 12px;
+  top: -5px;
+  color: #2691d9;
+}
+.txt_field input:focus ~ span::before,
+.txt_field input:valid ~ span::before{
+  width: 100%;
+}
+input[type="submit"]{
+  width: 100%;
+  height: 50px;
+  background: #156ba5;
+  font-size: 18px;
+  color: #e9f4fb;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 30px;
+}
+input[type="submit"]:hover{
+    background: #155c8b;
+    transition: .25s;
+}
+.signup_link{
+  margin: 30px 0;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+}
+.signup_link a{
+  color: #156ba5;
+  text-decoration: none;
+}
+.signup_link a:hover{
+  text-decoration: underline;
+  color: #155c8b;
+}
