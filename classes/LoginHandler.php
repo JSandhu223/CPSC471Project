@@ -19,7 +19,8 @@ class LoginHandler extends DBHandler
             $query = null;
             $stmt = null;
             // Send the user to the signup page with an error
-            header("location: ../index.php?failed-to-execute-statement");
+            echo "<script type='text/javascript'>alert('Statement failed to execute. Please try again.');location='../index.php'</script>";
+            // header("location: ../index.php?failed-to-execute-statement");
             exit();
         }
 
@@ -28,7 +29,8 @@ class LoginHandler extends DBHandler
 		if ($numRows == 0) {
             $query = null;
 			$stmt = null;
-			header("location: ../index.php?error=user-not-found");
+            echo "<script type='text/javascript'>alert('User not found.');location='../index.php'</script>";
+			// header("location: ../index.php?error=user-not-found");
 			exit();
 		}
         
@@ -40,7 +42,8 @@ class LoginHandler extends DBHandler
             $row = null;
             $query = null;
             $stmt = null;
-            header("location: ../index.php?error=incorrect-password");
+            echo "<script type='text/javascript'>alert('Incorrect password.');location='../index.php'</script>";
+            // header("location: ../index.php?error=incorrect-password");
 			exit();
         }
 
