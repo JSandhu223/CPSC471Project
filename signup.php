@@ -9,6 +9,12 @@ session_start();
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/nav.css">
+    <style>
+        .center{
+            height: 500px;    
+        }
+    </style>
+
     <title>Sign Up</title>
 </head>
 
@@ -39,22 +45,22 @@ session_start();
         <h1>Sign Up</h1>
         <form action="includes/signup.inc.php" method="post">
             <div class="txt_field">
-                <input type="text" name="username" />
+                <input type="text" name="username" required>
                 <label>Username</label>
             </div>
             <div class="txt_field">
-                <input type="text" name="email" />
+                <input type="text" name="email" required>
                 <label>Email</label>
             </div>
             <div class="txt_field">
-                <input type="password" name="password" />
+                <input type="password" name="password" required>
                 <label>Password</label>
             </div>
             <div class="txt_field">
-                <input type="password" name="passwordRepeat" />
+                <input type="password" name="passwordRepeat" required>
                 <label>Repeat Password</label>
             </div>
-            <button type="submit" name="signup-submit">Sign Up</button>
+            <input type="submit" name="signup-submit" value="Sign Up">
         </form>
     </div>
 
