@@ -123,7 +123,9 @@ function displayDate($date)
                 echo  "$" . $price;
                 echo "</p>";
                 ?>
-                <a href="">Add To Cart</a>
+                <!-- <a href="">Add To Cart</a> -->
+                <br/>
+                <input type="submit" value="Add To Cart">
             </div>
         <?php
         }
