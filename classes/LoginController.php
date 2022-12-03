@@ -19,7 +19,7 @@ class LoginController extends LoginHandler
         // Check if any of the input fields are empty
         if ($this->emptyField()) {
             // Send the user back to the login page with an error message in url
-            header("location: ../login.php?error=emptyinputfield");
+            header("location: ../index.php?error=emptyinputfield");
             exit();
         }
 
