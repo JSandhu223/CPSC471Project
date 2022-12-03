@@ -80,6 +80,7 @@ function displayDate($date)
         <?php
         // Loop through all the games in our database
         for ($i = 0; $i < count($all_games); $i++) {
+            $_SESSION["gameID"] = $all_games[$i]["GameID"];
             $title = $all_games[$i]["Title"];
             $age_rating = $all_games[$i]["AgeRating"];
             $release_date = $all_games[$i]["ReleaseDate"];
@@ -114,50 +115,10 @@ function displayDate($date)
                 echo  "$" . $price;
                 echo "</p>";
                 ?>
-                <!-- <a href="">Add To Cart</a> -->
                 <br />
-                <form action="store.php" method="post">
+                <form action="includes/store.inc.php" method="post">
                     <input type="submit" name="add-to-cart" value="Add To Cart">
                 </form>
-                <?php
-                if (isset($_POST["add-to-cart"])) {
-                    $con = new DBHandler();
-
-                    // First get the user's id
-                    $stmt = $con->connect()->prepare("SELECT UserID FROM USER WHERE Username = ?;");
-                    $stmt->execute(array($_SESSION["username"]));
-                    $userID = $stmt->fetchColumn();
-
-                    // Then get the Cart based on the userID
-                    $stmt = $con->connect()->prepare("SELECT CartID FROM CART WHERE UserID = ?;");
-                    $stmt->execute(array($userID));
-                    $cartID = $stmt->fetchColumn();
-
-                    // Get the gameID
-                    $stmt = $con->connect()->prepare("SELECT GameID FROM GAME WHERE Title = ?;");
-                    $stmt->execute(array($title));
-                    $gameID = $stmt->fetchColumn();
-
-                    // First check if the game already exists in the cart
-                    $stmt = $con->connect()->prepare("SELECT GameID FROM ADDED_TO WHERE CartID = ? AND GameID = ?;");
-                    $stmt->execute(array($cartID, $gameID));
-                    $result = $stmt->fetchAll();
-
-                    for ($i = 0; $i < count($result); $i++) {
-                        echo $result[0][$i];
-                        echo "<br/>";
-                    }
-
-                    if (count($result) > 0) {
-                        header("location: store.php?error=game-already-in-cart");
-                        exit();
-                    }
-
-                    // Then insert the game into the cart if it doesn't exist in it
-                    $stmt = $con->connect()->prepare("INSERT INTO ADDED_TO (CartID, GameID) VALUES (?, ?);");
-                    $stmt->execute(array($cartID, $gameID));
-                }
-                ?>
             </div>
         <?php
         }
