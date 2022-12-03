@@ -1,5 +1,27 @@
 <?php
 session_start();
+
+include "classes/DBHandler.php";
+
+// Get the username of the user that is currently logged in
+$session_username = $_SESSION["username"];
+// Create an object that talks to the database
+$con = new DBHandler();
+
+// Retrieve the UserID of the currently logged in user
+$stmt = $con->connect()->prepare("SELECT UserID FROM USER WHERE Username = ?;");
+$stmt->execute(array($session_username));
+$session_userID = $stmt->fetchColumn();
+
+// Get the CartID of the currently logged in user
+$stmt = $con->connect()->prepare("SELECT CartID FROM CART WHERE UserID = ?;");
+$stmt->execute(array($session_userID));
+$session_cartID = $stmt->fetchColumn();
+
+$stmt = $con->connect()->prepare("SELECT GameID FROM ADDED_TO WHERE CartID = ?;");
+$stmt->execute(array($session_cartID));
+$games_in_cart = $stmt->fetchAll();
+
 ?>
 
 <!DOCTYPE html>
@@ -35,24 +57,36 @@ session_start();
     </div>
     <h1 id="heading">Your Cart</h1>
     <section class="container">
-        <div class="st_game">
-            <div class="game_image"></div>
-            <h2>Game Name</h2>
-            <p>Description</p>
-            <p>price</p>
-        </div>
-        <div class="st_game">
-            <div class="game_image"></div>
-            <h2>Game Name</h2>
-            <p>Description</p>
-            <p>price</p>
-        </div>
-        <div class="st_game">
-            <div class="game_image"></div>
-            <h2>Game Name</h2>
-            <p>Description</p>
-            <p>price</p>
-        </div>
+        <?php
+        // Loop through all the games in the user's cart
+        $stmt = $con->connect()->prepare("SELECT * FROM GAME WHERE GameID = ?;");
+        for ($i = 0; $i < count($games_in_cart); $i++) {
+            $stmt->execute(array($games_in_cart[$i][0]));
+            // This returns an array of all rows that satisfy our query
+            $row = $stmt->fetch();
+        ?>
+            <div class="st_game">
+                <div class="game_image"></div>
+                <?php
+                echo "<h2>";
+                // Display the game's Name
+                echo $row["Title"];
+                echo "</h2>";
+
+                echo "<p>";
+                // Display the developer name
+                echo $row["Dname"];
+                echo "</p>";
+
+                echo "<p>";
+                // Display the value in the Price column
+                echo  "$" . $row["Price"];
+                echo "</p>";
+                ?>
+            </div>
+        <?php
+        }
+        ?>
     </section>
     <input id="checkout" type="submit" value="Proceed To Checkout">
 </body>
