@@ -1,5 +1,56 @@
 <?php
 session_start();
+
+include "classes/DBHandler.php";
+
+$con = new DBHandler();
+
+$stmt = $con->connect()->prepare("SELECT * FROM GAME;");
+$stmt->execute(array());
+$all_games = $stmt->fetchAll();
+
+function displayDate($date)
+{
+    $year = substr($date, 0, 4);
+    $month_num = substr($date, 5, 2);
+    $day = substr($date, 8, 2);
+
+    $month = "January";
+
+    if ($month_num == "02") {
+        $month = "February";
+    }
+    else if ($month_num == "03") {
+        $month = "March";
+    }
+    else if ($month_num == "04") {
+        $month = "April";
+    }
+    else if ($month_num == "03") {
+        $month = "May";
+    }
+    else if ($month_num == "03") {
+        $month = "June";
+    }
+    else if ($month_num == "03") {
+        $month = "July";
+    }
+    else if ($month_num == "03") {
+        $month = "August";
+    }
+    else if ($month_num == "03") {
+        $month = "September";
+    }
+    else if ($month_num == "03") {
+        $month = "November";
+    }
+    else {
+        $month = "December";
+    }
+
+    return $month . " " . $day . ", " . $year;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -35,24 +86,48 @@ session_start();
     </div>
     <h1 id="heading">Games On Sale</h1>
     <section class="container">
-        <div class="st_game">
-            <div class="game_image"></div>
-            <h2>Game Name</h2>
-            <p>Description</p>
-            <a href="">Add To Cart</a>
-        </div>
-        <div class="st_game">
-            <div class="game_image"></div>
-            <h2>Game Name</h2>
-            <p>Description</p>
-            <a href="">Add To Cart</a>
-        </div>
-        <div class="st_game">
-            <div class="game_image"></div>
-            <h2>Game Name</h2>
-            <p>Description</p>
-            <a href="">Add To Cart</a>
-        </div>
+        <?php
+        // Loop through all the games in our database
+        for ($i = 0; $i < count($all_games); $i++) {
+            $title = $all_games[$i]["Title"];
+            $age_rating = $all_games[$i]["AgeRating"];
+            $release_date = $all_games[$i]["ReleaseDate"];
+            $price = $all_games[$i]["Price"];
+            $dev_name = $all_games[$i]["Dname"];
+        ?>
+            <div class="st_game">
+                <div class="game_image"></div>
+                <?php
+                // Display the game's Name
+                echo "<h2>";
+                echo $title;
+                echo "</h2>";
+
+                // Display the developer name
+                echo "<p>";
+                echo $dev_name;
+                echo "</p>";
+
+                // Display the age rating
+                echo "<p>";
+                echo $age_rating;
+                echo "</p>";
+
+                // Display the release date
+                echo "<p>";
+                echo displayDate($release_date);
+                echo "</p>";
+
+                // Display the value in the Price column
+                echo "<p>";
+                echo  "$" . $price;
+                echo "</p>";
+                ?>
+                <a href="">Add To Cart</a>
+            </div>
+        <?php
+        }
+        ?>
     </section>
 </body>
 
