@@ -19,32 +19,23 @@ function displayDate($date)
 
     if ($month_num == "02") {
         $month = "February";
-    }
-    else if ($month_num == "03") {
+    } else if ($month_num == "03") {
         $month = "March";
-    }
-    else if ($month_num == "04") {
+    } else if ($month_num == "04") {
         $month = "April";
-    }
-    else if ($month_num == "03") {
+    } else if ($month_num == "03") {
         $month = "May";
-    }
-    else if ($month_num == "03") {
+    } else if ($month_num == "03") {
         $month = "June";
-    }
-    else if ($month_num == "03") {
+    } else if ($month_num == "03") {
         $month = "July";
-    }
-    else if ($month_num == "03") {
+    } else if ($month_num == "03") {
         $month = "August";
-    }
-    else if ($month_num == "03") {
+    } else if ($month_num == "03") {
         $month = "September";
-    }
-    else if ($month_num == "03") {
+    } else if ($month_num == "03") {
         $month = "November";
-    }
-    else {
+    } else {
         $month = "December";
     }
 
@@ -124,8 +115,10 @@ function displayDate($date)
                 echo "</p>";
                 ?>
                 <!-- <a href="">Add To Cart</a> -->
-                <br/>
-                <input type="submit" value="Add To Cart">
+                <br />
+                <form action="includes/store.inc.php" method="post">
+                    <input type="submit" name="add-to-cart" value="Add To Cart">
+                </form>
             </div>
         <?php
         }
