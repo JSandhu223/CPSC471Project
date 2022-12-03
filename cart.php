@@ -91,28 +91,4 @@ $games_in_cart = $stmt->fetchAll();
     <input id="checkout" type="submit" value="Proceed To Checkout">
 </body>
 
-
-<?php
-// REMOVE THIS LATER. THIS BLOCK OF CODE IS JUST FOR DEBUGGING!
-echo "Current User: " . $session_username;
-echo "<br/>";
-echo "UserID: " . $session_userID;
-echo "</br>";
-echo "CartID: " . $session_cartID;
-echo "</br>";
-echo "Num of items: " . count($games_in_cart);
-echo "</br>";
-
-for ($i = 0; $i < count($games_in_cart); $i++) {
-    echo "Game " . $i . ": " . $games_in_cart[$i][0];
-    echo "<br/>";
-}
-
-$stmt = $con->connect()->prepare("SELECT * FROM GAME WHERE GameID = ?;");
-for ($i = 0; $i < count($games_in_cart); $i++) {
-    $stmt->execute(array($games_in_cart[$i][0]));
-    $row = $stmt->fetch();
-}
-?>
-
 </html>
