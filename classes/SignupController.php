@@ -23,41 +23,48 @@ class SignupController extends SignupHandler
         // Check if any of the input fields are empty
         if ($this->emptyField()) {
             // Send the user back to the sign up page with an error message in url
-            header("location: ../signup.php?error=emptyinputfield");
+            echo "<script type='text/javascript'>alert('Empty input field detected.');location='../signup.php'</script>";
+            // header("location: ../signup.php?error=emptyinputfield");
             exit();
         }
 
         if (!$this->isValidUsername()) {
             // Send the user back to the sign up page with an error message in url
-            header("location: ../signup.php?error=invalidusername");
+            echo "<script type='text/javascript'>alert('Username is invalid.');location='../signup.php'</script>";
+            // header("location: ../signup.php?error=invalidusername");
             exit();
         }
 
         if (!$this->isValidEmail()) {
             // Send the user back to the sign up page with an error message in url
-            header("location: ../signup.php?error=invalidemail");
+            echo "<script type='text/javascript'>alert('Email is invalid.');location='../signup.php'</script>";
+            // header("location: ../signup.php?error=invalidemail");
             exit();
         }
 
         if (!$this->isValidPassword()) {
             // Send the user back to the sign up page with an error message in url
-            header("locaton: ../signup.php?error=invalidpassword");
+            echo "<script type='text/javascript'>alert('Password is invalid.');location='../signup.php'</script>";
+            // header("locaton: ../signup.php?error=invalidpassword");
             exit();
         }
 
         if (!$this->passwordMatch()) {
             // Send the user back to the sign up page with an error message in url
-            header("location: ../signup.php?error=passwordmismatch");
+            echo "<script type='text/javascript'>alert('Passwords do not match.');location='../signup.php'</script>";
+            // header("location: ../signup.php?error=passwordmismatch");
             exit();
         }
 
         if ($this->usernameExists()) {
-            header("location: ../signup.php?error=username-already-in-use");
+            echo "<script type='text/javascript'>alert('Username is already in use.');location='../signup.php'</script>";
+            // header("location: ../signup.php?error=username-already-in-use");
             exit();
         }
 
         if ($this->emailExists()) {
-            header("location: ../signup.php?error=email-already-in=use");
+            echo "<script type='text/javascript'>alert('Email address is already in use.');location='../signup.php'</script>";
+            // header("location: ../signup.php?error=email-already-in=use");
             exit();
         }
 
