@@ -19,32 +19,23 @@ function displayDate($date)
 
     if ($month_num == "02") {
         $month = "February";
-    }
-    else if ($month_num == "03") {
+    } else if ($month_num == "03") {
         $month = "March";
-    }
-    else if ($month_num == "04") {
+    } else if ($month_num == "04") {
         $month = "April";
-    }
-    else if ($month_num == "03") {
+    } else if ($month_num == "03") {
         $month = "May";
-    }
-    else if ($month_num == "03") {
+    } else if ($month_num == "03") {
         $month = "June";
-    }
-    else if ($month_num == "03") {
+    } else if ($month_num == "03") {
         $month = "July";
-    }
-    else if ($month_num == "03") {
+    } else if ($month_num == "03") {
         $month = "August";
-    }
-    else if ($month_num == "03") {
+    } else if ($month_num == "03") {
         $month = "September";
-    }
-    else if ($month_num == "03") {
+    } else if ($month_num == "03") {
         $month = "November";
-    }
-    else {
+    } else {
         $month = "December";
     }
 
@@ -89,6 +80,7 @@ function displayDate($date)
         <?php
         // Loop through all the games in our database
         for ($i = 0; $i < count($all_games); $i++) {
+            $_SESSION["gameID"] = $all_games[$i]["GameID"];
             $title = $all_games[$i]["Title"];
             $age_rating = $all_games[$i]["AgeRating"];
             $release_date = $all_games[$i]["ReleaseDate"];
@@ -123,7 +115,10 @@ function displayDate($date)
                 echo  "$" . $price;
                 echo "</p>";
                 ?>
-                <a href="">Add To Cart</a>
+                <br />
+                <form action="includes/store.inc.php" method="post">
+                    <input type="submit" name="add-to-cart" value="Add To Cart">
+                </form>
             </div>
         <?php
         }
