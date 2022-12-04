@@ -14,11 +14,11 @@ if (isset($_POST["login-submit"])) {
 
     // Grabbing the data from the login form.
     // This data will be sent to the LoginController.
-    $username = $_POST["username"];
+    $username_or_email = $_POST["username-or-email"];
     $password = $_POST["password"];
 
     // Begin the signup process
-    $loginProcedure = new LoginController($username, $password);
+    $loginProcedure = new LoginController($username_or_email, $password);
     $loginProcedure->initiateLogin();
 
     // After signup, send the user to the home page

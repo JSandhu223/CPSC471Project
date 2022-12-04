@@ -39,8 +39,8 @@ session_start();
         <h1>Login</h1>
         <form action="includes/login.inc.php" method="post">
             <div class="txt_field">
-                <input type="text" name="username" required>
-                <label>Username</label>
+                <input type="text" name="username-or-email" required>
+                <label>Username/Email</label>
             </div>
             <div class="txt_field">
                 <input type="password" name="password" required>
