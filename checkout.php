@@ -9,13 +9,9 @@ session_start();
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/nav.css">
-    <style>
-        .center{
-            height: 500px;    
-        }
-    </style>
+    <link rel="stylesheet" href="styles/checkout.css">
 
-    <title>Sign Up</title>
+    <title>Login</title>
 </head>
 
 <body>
@@ -42,28 +38,24 @@ session_start();
     </div>
 
     <div class="center">
-        <h1>Sign Up</h1>
-        <form action="includes/signup.inc.php" method="post">
-            <div class="txt_field">
-                <input type="text" name="username" required>
-                <label>Username</label>
-            </div>
-            <div class="txt_field">
-                <input type="text" name="email" required>
-                <label>Email</label>
-            </div>
-            <div class="txt_field">
-                <input type="password" name="password" required>
-                <label>Password</label>
-            </div>
-            <div class="txt_field">
-                <input type="password" name="passwordRepeat" required>
-                <label>Repeat Password</label>
-            </div>
-            <input type="submit" name="signup-submit" value="Sign Up">
+        <h1>Checkout</h1>
+        <form method="post">
+            <label>Name on Card</label>
+            <input type="text" name="cardname" required disabled value="Jon Doe">
+            
+            <label>Card Number</label>
+            <input type="text" name="cardno" required disabled value="420">
+            
+            <label>Expiry Date</label>
+            <input type="text" name="expdate" required disabled value="n/a">
+            
+            <label>CVV</label>
+            <input type="text" name="cvv" required disabled value="n/a">
+            
+            <input type="submit" name="checkout-submit" value="Confirm Order">
+            
         </form>
     </div>
-
 </body>
 
 </html>
