@@ -70,6 +70,8 @@ class SignupController extends SignupHandler
 
         // If none of these errors handlers are triggered, then create the user
         $this->createUser($this->username, $this->email, $this->password);
+        $this->createLibrary($this->username);
+        $this->createCart($this->username);
     }
 
     private function emptyField()

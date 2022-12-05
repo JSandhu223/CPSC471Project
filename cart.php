@@ -88,7 +88,9 @@ $games_in_cart = $stmt->fetchAll();
         }
         ?>
     </section>
-    <input id="checkout" type="submit" value="Proceed To Checkout">
+    <form action="checkout.php" method="post">
+        <input id="checkout" type="submit" value="Proceed To Checkout">
+    </form>
 </body>
 
 </html>
