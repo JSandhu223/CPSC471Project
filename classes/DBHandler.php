@@ -10,7 +10,7 @@ class DBHandler
             $username = "root";
             $password = "root";
             // We are connecting to the 'gameplatform' database on localhost with the specified username and password
-            $dbh = new PDO('mysql:host=localhost;dbname=gameplatform', $username, $password);
+            $dbh = new PDO('mysql:host=localhost;dbname=gameplatform', $username, $password);           
             return $dbh;
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage() . "<br/>";

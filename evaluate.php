@@ -12,20 +12,11 @@ session_start();
     <link rel="stylesheet" href="styles/checkout.css">
     <style>
         .center{
-           height: 440px;    
-        }
-        label{
-            color: #156ba5;
-        }
-        h2{
-            color: white;
-            margin-bottom: 40px;
-            border-bottom: solid;
-            border-color: #156ba5;
+           height: 380px;    
         }
     </style>
 
-    <title>Profile</title>
+    <title>Evaluation</title>
 </head>
 
 <body>
@@ -52,16 +43,16 @@ session_start();
     </div>
 
     <div class="center">
-        <h1>Your Profile</h1>
+        <h1>Game Evaluation</h1>
         <form method="post">
-            <label>Username</label>
-            <h2>JohnDoe123</h2>
+            <label>Game Name</label>
+            <input type="text" name="gamename" required value="Game Name (Case-Sensitive)">
             
-            <label>Status</label>
-            <h2>Online/Away/Playing</h2>
+            <label>Rating</label>
+            <input type="text" name="rating" required value="(Range: 1-10)">
             
-            <label># of Games Owned</label>
-            <h2>#x games</h2>            
+            <input type="submit" name="evaluate-submit" value="Confirm">
+            
         </form>
     </div>
 </body>
