@@ -1,7 +1,6 @@
 <?php
 include "classes/DBHandler.php";
 session_start();
-
     $con = new DBHandler();
 
     // First get the user's id
@@ -74,8 +73,8 @@ session_start();
             <label>Username</label>
             <h2><?php echo $_SESSION["username"] ?></h2>
             
-            <label>Status</label>
-            <h2>Online/Away/Playing</h2>
+            <label>Status</label>   
+            <h2>Online</h2>
             
             <label># of Games Owned</label>
             <h2><?php echo $gameCount;?> games</h2>           
