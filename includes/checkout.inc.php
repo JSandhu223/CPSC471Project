@@ -29,7 +29,6 @@ if (isset($_POST["checkout-submit"])) {
 
     $stmt = $con->connect()->prepare("DELETE FROM ADDED_TO WHERE GameID = ?;");
     $stmt->execute(array($gameID));
-    echo "<script type='text/javascript'>alert('Purchase completed!');location='../library.php'</script>";
 
     // header("location: ../library.php?message=purchase-complete");
     // Get the number of games in the user's library
@@ -41,5 +40,6 @@ if (isset($_POST["checkout-submit"])) {
     $stmt = $con->connect()->prepare("UPDATE LIBRARY SET GameCount = ? WHERE LibraryID = ?;");
     $stmt->execute(array($currentCount, $libraryID));
 
-    header("location: ../library.php?message=purchase-complete");
+    echo "<script type='text/javascript'>alert('Purchase completed!');location='../library.php'</script>";
+    // header("location: ../library.php?message=purchase-complete");
 }
