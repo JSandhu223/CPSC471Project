@@ -1,4 +1,5 @@
 <?php
+include "classes/DBHandler.php";
 session_start();
 
 include "classes/DBHandler.php";
@@ -15,6 +16,11 @@ $libraryID = $stmt->fetchColumn();
 $stmt = $con->connect()->prepare("SELECT GameID FROM BELONG_TO WHERE LibraryID = ?;");
 $stmt->execute(array($libraryID));
 $games_in_library = $stmt->fetchAll();
+
+// Get the GameCount based on the userID
+$stmt = $con->connect()->prepare("SELECT GameCount FROM LIBRARY WHERE UserID = ?;");
+$stmt->execute(array($userID));
+$gameCount = $stmt->fetchColumn();
 
 ?>
 
@@ -49,7 +55,7 @@ $games_in_library = $stmt->fetchAll();
         </nav>
         <h1>Product Name</h1>
     </div>
-    <h1 id="heading">Purchased Games</h1>
+    <h1 id="heading">Purchased Games (<?php echo $gameCount?>)</h1>
     <section class="container">
         <?php
         for ($i = 0; $i < count($games_in_library); $i++) {
