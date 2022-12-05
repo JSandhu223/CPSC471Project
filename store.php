@@ -117,7 +117,7 @@ function displayDate($date)
                 ?>
                 <br />
                 <form action="includes/store.inc.php" method="post">
-                    <input type="submit" name="add-to-cart" value="Add To Cart">
+                    <input type="submit" name="add-to-cart<?php echo $_SESSION["gameID"]; ?>" value="Add To Cart">
                 </form>
             </div>
         <?php
