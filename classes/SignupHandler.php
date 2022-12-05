@@ -81,4 +81,22 @@ class SignupHandler extends DBHandler
 
         return $alreadyExists;
     }
+
+    public function createLibrary($username) {
+        $stmt = $this->connect()->prepare("SELECT UserID FROM USER WHERE Username = ?;");
+        $stmt->execute(array($username));
+        $userID = $stmt->fetchColumn();
+        
+        $stmt = $this->connect()->prepare("INSERT INTO LIBRARY (UserID) VALUES (?);");
+        $stmt->execute(array($userID));
+    }
+
+    public function createCart($username) {
+        $stmt = $this->connect()->prepare("SELECT UserID FROM USER WHERE Username = ?;");
+        $stmt->execute(array($username));
+        $userID = $stmt->fetchColumn();
+        
+        $stmt = $this->connect()->prepare("INSERT INTO CART (UserID) VALUES (?);");
+        $stmt->execute(array($userID));
+    }
 }
