@@ -1,5 +1,4 @@
 <?php
-include "classes/DBHandler.php";
 session_start();
 
 include "classes/DBHandler.php";
