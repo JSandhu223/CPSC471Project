@@ -11,8 +11,8 @@ session_start();
     <link rel="stylesheet" href="styles/nav.css">
     <link rel="stylesheet" href="styles/checkout.css">
     <style>
-        .center{
-           height: 380px;    
+        .center {
+            height: 380px;
         }
     </style>
 
@@ -31,7 +31,13 @@ session_start();
                         <li><a href="library.php">Library</a></li>
                         <li><a href="store.php">Store</a></li>
                         <li><a href="cart.php">Cart</a></li>
+                        <li><a href="game_release.php">Request Game</a></li>
                         <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
+                        <li><a href="includes/logout.inc.php">Logout</a></li>
+                    <?php
+                    } else if ($_SESSION["admin"]) {
+                    ?>
+                        <li><a href="evaluate.php">Evaluate Game</a></li>
                         <li><a href="includes/logout.inc.php">Logout</a></li>
                     <?php
                     }
@@ -47,12 +53,12 @@ session_start();
         <form method="post">
             <label>Game Name</label>
             <input type="text" name="gamename" required value="Game Name (Case-Sensitive)">
-            
+
             <label>Rating</label>
             <input type="text" name="rating" required value="(Range: 1-10)">
-            
+
             <input type="submit" name="evaluate-submit" value="Confirm">
-            
+
         </form>
     </div>
 </body>

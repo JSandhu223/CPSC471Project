@@ -28,6 +28,11 @@ session_start();
                         <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
                         <li><a href="includes/logout.inc.php">Logout</a></li>
                     <?php
+                    } else if (isset($_SESSION["admin"])) {
+                    ?>
+                        <li><a href="evaluate.php">Evaluate Game</a></li>
+                        <li><a href="includes/logout.inc.php">Logout</a></li>
+                    <?php
                     }
                     ?>
                 </ul>
