@@ -32,4 +32,14 @@ if (isset($_POST["checkout-submit"])) {
     echo "<script type='text/javascript'>alert('Purchase completed!');location='../library.php'</script>";
 
     // header("location: ../library.php?message=purchase-complete");
+    // Get the number of games in the user's library
+    $stmt = $con->connect()->prepare("SELECT COUNT(*) FROM BELONG_TO WHERE LibraryID = ?;");
+    $stmt->execute(array($libraryID));
+    $currentCount = $stmt->fetchColumn();
+
+    // Update the game count
+    $stmt = $con->connect()->prepare("UPDATE LIBRARY SET GameCount = ? WHERE LibraryID = ?;");
+    $stmt->execute(array($currentCount, $libraryID));
+
+    header("location: ../library.php?message=purchase-complete");
 }
