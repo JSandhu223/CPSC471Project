@@ -11,7 +11,7 @@ session_start();
     <link rel="stylesheet" href="styles/nav.css">
     <link rel="stylesheet" href="styles/checkout.css">
 
-    <title>Login</title>
+    <title>Checkout</title>
 </head>
 
 <body>
@@ -39,18 +39,18 @@ session_start();
 
     <div class="center">
         <h1>Checkout</h1>
-        <form method="post">
+        <form action = "includes/checkout.inc.php" method="post">
             <label>Name on Card</label>
-            <input type="text" name="cardname" required disabled value="Jon Doe">
+            <input type="text" name="cardname" required>
             
             <label>Card Number</label>
-            <input type="text" name="cardno" required disabled value="420">
+            <input type="text" name="cardno" required>
             
             <label>Expiry Date</label>
-            <input type="text" name="expdate" required disabled value="n/a">
+            <input type="text" name="expdate" required>
             
             <label>CVV</label>
-            <input type="text" name="cvv" required disabled value="n/a">
+            <input type="text" name="cvv" required>
             
             <input type="submit" name="checkout-submit" value="Confirm Order">
             

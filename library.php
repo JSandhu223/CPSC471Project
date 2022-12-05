@@ -1,19 +1,26 @@
 <?php
-include "classes/DBHandler.php";
 session_start();
 
-    $con = new DBHandler();
+include "classes/DBHandler.php";
 
-    // First get the user's id
-    $stmt = $con->connect()->prepare("SELECT UserID FROM USER WHERE Username = ?;");
-    $stmt->execute(array($_SESSION["username"]));
-    $userID = $stmt->fetchColumn();
-    
+$con = new DBHandler();
+$stmt = $con->connect()->prepare("SELECT UserID FROM USER WHERE Username = ?;");
+$stmt->execute(array($_SESSION["username"]));
+$userID = $stmt->fetchColumn();
 
-    // Then get the GameCount based on the userID
-    $stmt = $con->connect()->prepare("SELECT GameCount FROM LIBRARY WHERE UserID = ?;");
-    $stmt->execute(array($userID));
-    $gameCount = $stmt->fetchColumn();
+$stmt = $con->connect()->prepare("SELECT LibraryID FROM LIBRARY WHERE UserID = ?;");
+$stmt->execute(array($userID));
+$libraryID = $stmt->fetchColumn();
+
+$stmt = $con->connect()->prepare("SELECT GameID FROM BELONG_TO WHERE LibraryID = ?;");
+$stmt->execute(array($libraryID));
+$games_in_library = $stmt->fetchAll();
+
+// Get the GameCount based on the userID
+$stmt = $con->connect()->prepare("SELECT GameCount FROM LIBRARY WHERE UserID = ?;");
+$stmt->execute(array($userID));
+$gameCount = $stmt->fetchColumn();
+
 ?>
 
 <!DOCTYPE html>
@@ -49,24 +56,23 @@ session_start();
     </div>
     <h1 id="heading">Purchased Games (<?php echo $gameCount?>)</h1>
     <section class="container">
-        <div class="st_game">
-            <div class="game_image"></div>
-            <h2>Game Name</h2>
-            <p>Description</p>
-            <a href=#>Launch Game</a>
-        </div>
-        <div class="st_game">
-            <div class="game_image"></div>
-            <h2>Game Name</h2>
-            <p>Description</p>
-            <a href=#>Launch Game</a>
-        </div>
-        <div class="st_game">
-            <div class="game_image"></div>
-            <h2>Game Name</h2>
-            <p>Description</p>
-            <a href=#>Launch Game</a>
-        </div>
+        <?php
+        for ($i = 0; $i < count($games_in_library); $i++) {
+            $stmt = $con->connect()->prepare("SELECT * FROM GAME WHERE GameID = ?;");
+            $stmt->execute(array($games_in_library[$i]["GameID"]));
+            $game_info = $stmt->fetchAll();
+            $title = $game_info[$i]["Title"];
+            $dev_name = $game_info[$i]["Dname"];
+        ?>
+            <div class="st_game">
+                <div class="game_image"></div>
+                <h2><?php echo $title; ?></h2>
+                <p><?php echo $dev_name; ?></p>
+                <a href=#>Launch Game</a>
+            </div>
+        <?php
+        }
+        ?>
     </section>
 </body>
 
