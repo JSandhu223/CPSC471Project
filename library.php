@@ -1,5 +1,19 @@
 <?php
+include "classes/DBHandler.php";
 session_start();
+
+    $con = new DBHandler();
+
+    // First get the user's id
+    $stmt = $con->connect()->prepare("SELECT UserID FROM USER WHERE Username = ?;");
+    $stmt->execute(array($_SESSION["username"]));
+    $userID = $stmt->fetchColumn();
+    
+
+    // Then get the GameCount based on the userID
+    $stmt = $con->connect()->prepare("SELECT GameCount FROM LIBRARY WHERE UserID = ?;");
+    $stmt->execute(array($userID));
+    $gameCount = $stmt->fetchColumn();
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +47,7 @@ session_start();
         </nav>
         <h1>Product Name</h1>
     </div>
-    <h1 id="heading">Purchased Games</h1>
+    <h1 id="heading">Purchased Games (<?php echo $gameCount?>)</h1>
     <section class="container">
         <div class="st_game">
             <div class="game_image"></div>
