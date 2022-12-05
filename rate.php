@@ -36,11 +36,6 @@ session_start();
                         <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
                         <li><a href="includes/logout.inc.php">Logout</a></li>
                     <?php
-                    } else if ($_SESSION["admin"]) {
-                    ?>
-                        <li><a href="evaluate.php">Evaluate Game</a></li>
-                        <li><a href="includes/logout.inc.php">Logout</a></li>
-                    <?php
                     }
                     ?>
                 </ul>
@@ -50,13 +45,13 @@ session_start();
     </div>
 
     <div class="center">
-        <h1>Game Evaluation</h1>
+        <h1>Rate a Game</h1>
         <form method="post">
             <label>Game Name</label>
-            <input type="text" name="gamename" required value="Game Name (Case-Sensitive)">
+            <input type="text" name="gamename" required placeholder="Game Name (Case-Sensitive)">
 
             <label>Rating</label>
-            <input type="text" name="rating" required value="(Range: 1-10)">
+            <input type="text" name="rating" required placeholder="(Range: 1-10)">
 
             <input type="submit" name="evaluate-submit" value="Confirm">
 

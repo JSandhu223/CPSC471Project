@@ -1,18 +1,18 @@
 <?php
 include "classes/DBHandler.php";
 session_start();
-    $con = new DBHandler();
+$con = new DBHandler();
 
-    // First get the user's id
-    $stmt = $con->connect()->prepare("SELECT UserID FROM USER WHERE Username = ?;");
-    $stmt->execute(array($_SESSION["username"]));
-    $userID = $stmt->fetchColumn();
-    
+// First get the user's id
+$stmt = $con->connect()->prepare("SELECT UserID FROM USER WHERE Username = ?;");
+$stmt->execute(array($_SESSION["username"]));
+$userID = $stmt->fetchColumn();
 
-    // Then get the GameCount based on the userID
-    $stmt = $con->connect()->prepare("SELECT GameCount FROM LIBRARY WHERE UserID = ?;");
-    $stmt->execute(array($userID));
-    $gameCount = $stmt->fetchColumn();
+
+// Then get the GameCount based on the userID
+$stmt = $con->connect()->prepare("SELECT GameCount FROM LIBRARY WHERE UserID = ?;");
+$stmt->execute(array($userID));
+$gameCount = $stmt->fetchColumn();
 
 ?>
 
@@ -25,13 +25,15 @@ session_start();
     <link rel="stylesheet" href="styles/nav.css">
     <link rel="stylesheet" href="styles/checkout.css">
     <style>
-        .center{
-           height: 440px;    
+        .center {
+            height: 440px;
         }
-        label{
+
+        label {
             color: #156ba5;
         }
-        h2{
+
+        h2 {
             color: white;
             margin-bottom: 40px;
             border-bottom: solid;
@@ -53,10 +55,13 @@ session_start();
                     ?>
                         <li><a href="library.php">Library</a></li>
                         <li><a href="store.php">Store</a></li>
+                        <li><a href="groups.php">Groups</a></li>
                         <li><a href="cart.php">Cart</a></li>
+                        <li><a href="rate.php">Rate</a></li>
+                        <li><a href="game_release.php">Request Game</a></li>
                         <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
                         <li><a href="includes/logout.inc.php">Logout</a></li>
-                        
+
 
                     <?php
                     }
@@ -72,12 +77,12 @@ session_start();
         <form method="post">
             <label>Username</label>
             <h2><?php echo $_SESSION["username"] ?></h2>
-            
-            <label>Status</label>   
+
+            <label>Status</label>
             <h2>Online</h2>
-            
+
             <label># of Games Owned</label>
-            <h2><?php echo $gameCount;?> games</h2>           
+            <h2><?php echo $gameCount; ?> games</h2>
         </form>
     </div>
 </body>

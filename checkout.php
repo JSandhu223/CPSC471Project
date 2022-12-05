@@ -25,7 +25,10 @@ session_start();
                     ?>
                         <li><a href="library.php">Library</a></li>
                         <li><a href="store.php">Store</a></li>
+                        <li><a href="groups.php">Groups</a></li>
                         <li><a href="cart.php">Cart</a></li>
+                        <li><a href="rate.php">Rate</a></li>
+                        <li><a href="game_release.php">Request Game</a></li>
                         <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
                         <li><a href="includes/logout.inc.php">Logout</a></li>
                     <?php
@@ -39,21 +42,21 @@ session_start();
 
     <div class="center">
         <h1>Checkout</h1>
-        <form action = "includes/checkout.inc.php" method="post">
+        <form action="includes/checkout.inc.php" method="post">
             <label>Name on Card</label>
             <input type="text" name="cardname" required>
-            
+
             <label>Card Number</label>
             <input type="text" name="cardno" required>
-            
+
             <label>Expiry Date</label>
             <input type="text" name="expdate" required>
-            
+
             <label>CVV</label>
             <input type="text" name="cvv" required>
-            
+
             <input type="submit" name="checkout-submit" value="Confirm Order">
-            
+
         </form>
     </div>
 </body>
