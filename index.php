@@ -23,7 +23,7 @@ session_start();
                     ?>
                         <li><a href="library.php">Library</a></li>
                         <li><a href="store.php">Store</a></li>
-                        <li><a href="store.php">Groups</a></li>
+                        <li><a href="groups.php">Groups</a></li>
                         <li><a href="cart.php">Cart</a></li>
                         <li><a href="game_release.php">Request Game</a></li>
                         <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
