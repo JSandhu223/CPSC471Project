@@ -38,6 +38,7 @@ CREATE TABLE `added_to` (
 
 LOCK TABLES `added_to` WRITE;
 /*!40000 ALTER TABLE `added_to` DISABLE KEYS */;
+INSERT INTO `added_to` VALUES (1007,1),(1008,1),(1007,2),(1008,2),(1007,3),(1008,3),(1007,4),(1008,4),(1008,5);
 /*!40000 ALTER TABLE `added_to` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +66,7 @@ CREATE TABLE `administrator` (
 
 LOCK TABLES `administrator` WRITE;
 /*!40000 ALTER TABLE `administrator` DISABLE KEYS */;
-INSERT INTO `administrator` VALUES (1,'Bage','Oldell','bageoldell@@mistsoftware.com','LoomyWTF');
+INSERT INTO `administrator` VALUES (1,'Bage','Oldell','admin.bageoldell@mistsoftware.com','LoomyWTF');
 /*!40000 ALTER TABLE `administrator` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,6 +93,7 @@ CREATE TABLE `belong_to` (
 
 LOCK TABLES `belong_to` WRITE;
 /*!40000 ALTER TABLE `belong_to` DISABLE KEYS */;
+INSERT INTO `belong_to` VALUES (1002,6),(1003,6),(1004,6);
 /*!40000 ALTER TABLE `belong_to` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +111,7 @@ CREATE TABLE `cart` (
   PRIMARY KEY (`CartID`,`UserID`),
   KEY `CARTUSER_FK` (`UserID`),
   CONSTRAINT `CARTUSER_FK` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1011 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,6 +120,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (1006,1,0),(1007,2,0),(1008,7,0),(1009,4,0),(1010,5,0);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,7 +275,7 @@ CREATE TABLE `library` (
   PRIMARY KEY (`LibraryID`,`UserID`),
   KEY `LIBRARYUSER_FK` (`UserID`),
   CONSTRAINT `LIBRARYUSER_FK` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1007 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,6 +284,7 @@ CREATE TABLE `library` (
 
 LOCK TABLES `library` WRITE;
 /*!40000 ALTER TABLE `library` DISABLE KEYS */;
+INSERT INTO `library` VALUES (1002,7,1),(1003,1,1),(1004,2,1),(1005,4,0),(1006,5,0);
 /*!40000 ALTER TABLE `library` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -407,7 +411,7 @@ CREATE TABLE `user` (
   `Password` varchar(64) NOT NULL,
   PRIMARY KEY (`UserID`),
   UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -416,7 +420,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'johndoe123','johndoe@hotmail.com','qwertyuiop'),(2,'janedoe456','janedoe@gmail.com','qwertyuiop'),(4,'meow','meow@gmail.com','meowmeow1234');
+INSERT INTO `user` VALUES (1,'johndoe123','johndoe@hotmail.com','qwertyuiop'),(2,'janedoe456','janedoe@gmail.com','qwertyuiop'),(4,'meow','meow@gmail.com','meowmeow1234'),(5,'johnjones1999','johnjones@gmail.com','qwertyuiop'),(7,'weirdoe789','weirdoe@gmail.com','qwertyuiop');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -429,4 +433,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-29 15:34:27
+-- Dump completed on 2022-12-05  4:37:01
