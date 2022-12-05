@@ -27,5 +27,9 @@ if (isset($_POST["checkout-submit"])) {
     $stmt = $con->connect()->prepare("INSERT INTO BELONG_TO (LibraryID, GameID) VALUES (?, ?);");
     $stmt->execute(array($libraryID, $gameID));
 
-    header("location: ../library.php?message=purchase-complete");
+    $stmt = $con->connect()->prepare("DELETE FROM ADDED_TO WHERE GameID = ?;");
+    $stmt->execute(array($gameID));
+    echo "<script type='text/javascript'>alert('Purchase completed!');location='../library.php'</script>";
+
+    // header("location: ../library.php?message=purchase-complete");
 }
