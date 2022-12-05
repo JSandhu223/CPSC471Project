@@ -52,6 +52,15 @@ if (isset($_POST["checkout-submit"])) {
     $libraryID = $stmt->fetchColumn();
     echo "Library ID: " . $libraryID . "<br/>";
 
+    $stmt = $con->connect()->prepare("SELECT GameID FROM BELONG_TO WHERE LibraryID = ?;");
+    $stmt->execute(array($libraryID));
+    $result = $stmt->fetchAll();
+
+    if (count($result) >= 1) {
+        echo "<script type='text/javascript'>alert('Game Already In Library.');location='../checkout.php'</script>";
+        exit();
+    }
+
     // This only inserts a single game into the library
     $gameID = 6;
     $stmt = $con->connect()->prepare("INSERT INTO BELONG_TO (LibraryID, GameID) VALUES (?, ?);");
