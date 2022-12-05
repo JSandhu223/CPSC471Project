@@ -27,5 +27,14 @@ if (isset($_POST["checkout-submit"])) {
     $stmt = $con->connect()->prepare("INSERT INTO BELONG_TO (LibraryID, GameID) VALUES (?, ?);");
     $stmt->execute(array($libraryID, $gameID));
 
+    // Get the number of games in the user's library
+    $stmt = $con->connect()->prepare("SELECT COUNT(*) FROM BELONG_TO WHERE LibraryID = ?;");
+    $stmt->execute(array($libraryID));
+    $currentCount = $stmt->fetchColumn();
+
+    // Update the game count
+    $stmt = $con->connect()->prepare("UPDATE LIBRARY SET GameCount = ? WHERE LibraryID = ?;");
+    $stmt->execute(array($currentCount, $libraryID));
+
     header("location: ../library.php?message=purchase-complete");
 }

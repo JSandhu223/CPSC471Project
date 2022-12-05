@@ -54,16 +54,15 @@ session_start();
 
     <div class="center">
         <h1>Request Evaluation</h1>
-        <form method="post">
+        <form action="includes/game_release.inc.php" method="post">
             <label>Game Name</label>
-            <input type="text" name="gamename" required value="Pacman">
+            <input type="text" name="game-name" required>
             
-            <label>Game Genre</label>
-            <input type="text" name="rating" required value="FPS">
+            <label>Age Rating</label>
+            <input type="text" name="age-rating" required>
             
             <input type="submit" name="upload" value="(+) Upload Game Files">
             <input type="submit" name="request-eval" value="Request Evaluation">
-            
         </form>
     </div>
 </body>
