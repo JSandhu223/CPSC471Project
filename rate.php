@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+include "classes/DBHandler.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -46,15 +49,31 @@ session_start();
 
     <div class="center">
         <h1>Rate a Game</h1>
-        <form method="post">
-            <label>Game Name</label>
-            <input type="text" name="gamename" required placeholder="Game Name (Case-Sensitive)">
+        <form action="" method="post">
+            <label>Game</label>
+            <select name="rate-game">
+                <option value="" disabled selected>Choose a Game Below</option>
+                <?php
+                $con = new DBHandler();
+                $stmt = $con->connect()->prepare("SELECT MAX(GameID) FROM GAME;");
+                $stmt->execute(array());
+                $total_games = $stmt->fetchColumn();
 
-            <label>Rating</label>
-            <input type="text" name="rating" required placeholder="(Range: 1-10)">
-
-            <input type="submit" name="evaluate-submit" value="Confirm">
-
+                // Start from index 1, as that is what the first game in our GAME table would start from
+                for ($i = 1; $i <= $total_games; $i++) {
+                    $stmt = $con->connect()->prepare("SELECT Title FROM GAME WHERE GameID = ?;");
+                    $stmt->execute(array($i));
+                    $title = $stmt->fetchColumn();
+                    if (empty($title)) {
+                        continue;
+                    }
+                    echo "<option>";
+                    echo $title;
+                    echo "</option>";
+                }
+                ?>
+            </select>
+            <input type="submit" name="rate-submit" value="Submit Rating">
         </form>
     </div>
 </body>
