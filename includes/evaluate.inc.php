@@ -22,6 +22,6 @@ if (isset($_POST["reject-game"])) {
     $stmt = $con->connect()->prepare("DELETE FROM GAME WHERE GameID = ?;");
     $stmt->execute(array($selectedGameID));
 
-    echo "<script type='text/javascript'>alert('Game rejected! Removed from DB.');location='../rate.php'</script>";
+    echo "<script type='text/javascript'>alert('Game rejected! Removed from DB.');location='../evaluate.php'</script>";
     exit();
 }

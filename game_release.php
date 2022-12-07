@@ -58,7 +58,7 @@ session_start();
     </div>
 
     <div class="center">
-        <h1>Request Evaluation</h1>
+        <h1>Request Game</h1>
         <form action="includes/game_release.inc.php" method="post">
             <label>Game Name</label>
             <input type="text" name="game-name" required>
@@ -77,8 +77,12 @@ session_start();
             <label>Developer Name</label>
             <input type="text" name="dev-name" required>
 
+            <label>Developer Start Date</label>
+            <br>
+            <input type="date" name="dev-start-date" required>
+
             <input type="submit" name="upload" value="(+) Upload Game Files">
-            <input type="submit" name="request-eval" value="Request Evaluation">
+            <input type="submit" name="request-eval" value="Request Game">
         </form>
     </div>
 </body>
