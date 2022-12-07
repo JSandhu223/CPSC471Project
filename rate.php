@@ -19,7 +19,7 @@ include "classes/DBHandler.php";
         }
     </style>
 
-    <title>Evaluation</title>
+    <title>Rate</title>
 </head>
 
 <body>
@@ -49,10 +49,9 @@ include "classes/DBHandler.php";
 
     <div class="center">
         <h1>Rate a Game</h1>
-        <form action="" method="post">
+        <form action="includes/rate.inc.php" method="post">
             <label>Game</label>
             <select name="rate-game">
-                <option value="" disabled selected>Choose a Game Below</option>
                 <?php
                 $con = new DBHandler();
                 $stmt = $con->connect()->prepare("SELECT MAX(GameID) FROM GAME;");
@@ -67,12 +66,19 @@ include "classes/DBHandler.php";
                     if (empty($title)) {
                         continue;
                     }
-                    echo "<option>";
+                    echo "<option value='";
+                    echo $i;
+                    echo "'>";
                     echo $title;
                     echo "</option>";
                 }
                 ?>
             </select>
+            <br>
+            <br>
+            <label>Score</label>
+            <input type="text" name="rate-score" placeholder="Enter Score (1-10)">
+            <br>
             <input type="submit" name="rate-submit" value="Submit Rating">
         </form>
     </div>
