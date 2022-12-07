@@ -22,7 +22,7 @@ if (isset($_POST["rate-submit"])) {
     $userID = $stmt->fetchColumn();
 
     // First check if the user has already rated this game
-    $stmt = $con->connect()->prepare("SELECT UserID FROM RATING WHERE GameID = ?;");
+    $stmt = $con->connect()->prepare("SELECT UserID FROM RATING WHERE GameID = ? AND Greenlit = 1;");
     $stmt->execute(array($selectedGameID));
     $result = $stmt->fetchColumn();
     // If the user has already rated the game, simply update the rating with the new score
