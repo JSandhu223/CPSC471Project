@@ -66,6 +66,15 @@ session_start();
             <label>Age Rating</label>
             <input type="text" name="age-rating" required>
 
+            <label>Release Date</label>
+            <input type="text" name="release-date" required>
+
+            <label>Price to Sell</label>
+            <input type="text" name="price" required>
+
+            <label>Developer Name</label>
+            <input type="text" name="dev-name" required>
+
             <input type="submit" name="upload" value="(+) Upload Game Files">
             <input type="submit" name="request-eval" value="Request Evaluation">
         </form>
