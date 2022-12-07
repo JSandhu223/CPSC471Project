@@ -67,7 +67,9 @@ session_start();
             <input type="text" name="age-rating" required>
 
             <label>Release Date</label>
-            <input type="text" name="release-date" required>
+            <br>
+            <input type="date" name="release-date" required>
+            <br>
 
             <label>Price to Sell</label>
             <input type="text" name="price" required>
