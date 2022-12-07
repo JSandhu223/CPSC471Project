@@ -17,8 +17,14 @@ $all_groups = $stmt->fetchAll();
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/nav.css">
-    <link rel="stylesheet" href="styles/list_preview.css">
-    <title>Store</title>
+    <link rel="stylesheet" href="styles/checkout.css">
+    <style>
+        .center {
+            height: 380px;
+        }
+    </style>
+
+    <title>Groups</title>
 </head>
 
 <body>
@@ -44,36 +50,36 @@ $all_groups = $stmt->fetchAll();
         </nav>
         <h1>Product Name</h1>
     </div>
-    <h1 id="heading">Groups</h1>
-    <section class="container">
-        <?php
-        // Loop through all the games in our database
-        for ($i = 0; $i < count($all_groups); $i++) {
-            $_SESSION["gname"] = $all_groups[$i]["Gname"];
-            $mem_count = $all_groups[$i]["MemCount"];
-        ?>
-            <div class="st_game">
-                <div class="game_image"></div>
-                <?php
-                // Display the game's Name
-                echo "<h2>";
-                echo $_SESSION["gname"];
-                echo "</h2>";
 
-                // Display the developer name
-                echo "<p>";
-                echo "Members: " . $mem_count;
-                echo "</p>";
+    <div class="center">
+        <h1>Join a group</h1>
+        <form action="includes/groups.inc.php" method="post">
+            <label>Game Groups</label>
+            <select name="group-name">
+                <option value="" disabled selected>Select a group to join</option>
+                <?php
+                $con = new DBHandler();
+                $stmt = $con->connect()->prepare("SELECT MAX(GameID) FROM GAME;");
+                $stmt->execute(array());
+                $total_games = $stmt->fetchColumn();
+
+                // Start from index 1, as that is what the first game in our GAME table would start from
+                for ($i = 1; $i <= $total_games; $i++) {
+                    $stmt = $con->connect()->prepare("SELECT Title FROM GAME WHERE GameID = ?;");
+                    $stmt->execute(array($i));
+                    $title = $stmt->fetchColumn();
+                    if (empty($title)) {
+                        continue;
+                    }
+                    echo "<option>";
+                    echo $title;
+                    echo "</option>";
+                }
                 ?>
-                <br />
-                <form action="#" method="post">
-                    <input type="submit" name="join-group-<?php echo $_SESSION["gname"]; ?>" value="Join">
-                </form>
-            </div>
-        <?php
-        }
-        ?>
-    </section>
+            </select>
+            <input type="submit" name="group-submit" value="Join Group">
+        </form>
+    </div>
 </body>
 
 </html>
