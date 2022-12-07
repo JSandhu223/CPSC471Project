@@ -61,8 +61,8 @@ include "classes/DBHandler.php";
 
                 // Start from index 1, as that is what the first game in our GAME table would start from
                 for ($i = 1; $i <= $total_games; $i++) {
-                    $stmt = $con->connect()->prepare("SELECT Title FROM GAME WHERE GameID = ?;");
-                    $stmt->execute(array($i));
+                    $stmt = $con->connect()->prepare("SELECT Title FROM GAME WHERE GameID = ? AND Greenlit = ?;");
+                    $stmt->execute(array($i, 1));
                     $title = $stmt->fetchColumn();
                     if (empty($title)) {
                         continue;
