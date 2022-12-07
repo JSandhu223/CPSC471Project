@@ -1,5 +1,40 @@
 <?php
 session_start();
+
+include "classes/DBHandler.php";
+
+function displayDate($date)
+{
+    $year = substr($date, 0, 4);
+    $month_num = substr($date, 5, 2);
+    $day = substr($date, 8, 2);
+
+    $month = "January";
+
+    if ($month_num == "02") {
+        $month = "February";
+    } else if ($month_num == "03") {
+        $month = "March";
+    } else if ($month_num == "04") {
+        $month = "April";
+    } else if ($month_num == "03") {
+        $month = "May";
+    } else if ($month_num == "03") {
+        $month = "June";
+    } else if ($month_num == "03") {
+        $month = "July";
+    } else if ($month_num == "03") {
+        $month = "August";
+    } else if ($month_num == "03") {
+        $month = "September";
+    } else if ($month_num == "03") {
+        $month = "November";
+    } else {
+        $month = "December";
+    }
+
+    return $month . " " . $day . ", " . $year;
+}
 ?>
 
 <!DOCTYPE html>
@@ -51,15 +86,36 @@ session_start();
 
     <div class="center">
         <h1>Game Evaluation</h1>
-        <form method="post">
-            <label>Game Name</label>
-            <input type="text" name="gamename" required value="Game Name (Case-Sensitive)">
+        <form action="includes/evaluate.inc.php" method="post">
+            <label>Game</label>
+            <select name="evaluate-game">
+                <?php
+                $con = new DBHandler();
+                $stmt = $con->connect()->prepare("SELECT COUNT(*) FROM GAME WHERE Greenlit = 0;");
+                $stmt->execute(array());
+                $total_games = $stmt->fetchColumn();
 
-            <label>Rating</label>
-            <input type="text" name="rating" required value="(Range: 1-10)">
+                $stmt = $con->connect()->prepare("SELECT * FROM GAME WHERE Greenlit = 0;");
+                $stmt->execute(array());
+                $games = $stmt->fetchAll(); // This is all the non-greenlit games
 
-            <input type="submit" name="evaluate-submit" value="Confirm">
+                // Start from index 1, as that is what the first game in our GAME table would start from
+                for ($i = 0; $i < $total_games; $i++) {
+                    $title = $games[$i]["Title"];
+                    $gameID = $games[$i]["GameID"];
 
+                    echo "<option value='";
+                    echo $gameID;
+                    echo "'>";
+                    echo $title;
+                    echo "</option>";
+                }
+                ?>
+            </select>
+            <br>
+            <br>
+            <input type="submit" name="approve-game" value="Approve">
+            <input type="submit" name="reject-game" value="Reject">
         </form>
     </div>
 </body>
