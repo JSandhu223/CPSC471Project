@@ -3,14 +3,14 @@
 class LoginController extends LoginHandler
 {
 
-    private $username;
+    private $username_or_email;
     private $password;
 
     // Constructor
     // This is called when a user fills in the login page and hits the submit button
-    public function __construct($username, $password)
+    public function __construct($username_or_email, $password)
     {
-        $this->username = $username;
+        $this->username_or_email = $username_or_email;
         $this->password = $password;
     }
 
@@ -24,7 +24,7 @@ class LoginController extends LoginHandler
         }
 
         // If none of these errors handlers are triggered, then create the user
-        $this->loginUser($this->username, $this->password);
+        $this->loginUser($this->username_or_email, $this->password);
     }
 
     private function emptyField()
@@ -32,7 +32,7 @@ class LoginController extends LoginHandler
         $isEmpty = false;
 
 
-        if (empty($this->username) || empty($this->password)) {
+        if (empty($this->username_or_email) || empty($this->password)) {
             $isEmpty = true;
         }
 

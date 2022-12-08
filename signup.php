@@ -10,8 +10,8 @@ session_start();
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/nav.css">
     <style>
-        .center{
-            height: 500px;    
+        .center {
+            height: 500px;
         }
     </style>
 
@@ -29,7 +29,10 @@ session_start();
                     ?>
                         <li><a href="library.php">Library</a></li>
                         <li><a href="store.php">Store</a></li>
+                        <li><a href="groups.php">Groups</a></li>
                         <li><a href="cart.php">Cart</a></li>
+                        <li><a href="rate.php">Rate</a></li>
+                        <li><a href="game_release.php">Request Game</a></li>
                         <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
                         <li><a href="includes/logout.inc.php">Logout</a></li>
                     <?php

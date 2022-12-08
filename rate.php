@@ -3,38 +3,6 @@ session_start();
 
 include "classes/DBHandler.php";
 
-function displayDate($date)
-{
-    $year = substr($date, 0, 4);
-    $month_num = substr($date, 5, 2);
-    $day = substr($date, 8, 2);
-
-    $month = "January";
-
-    if ($month_num == "02") {
-        $month = "February";
-    } else if ($month_num == "03") {
-        $month = "March";
-    } else if ($month_num == "04") {
-        $month = "April";
-    } else if ($month_num == "03") {
-        $month = "May";
-    } else if ($month_num == "03") {
-        $month = "June";
-    } else if ($month_num == "03") {
-        $month = "July";
-    } else if ($month_num == "03") {
-        $month = "August";
-    } else if ($month_num == "03") {
-        $month = "September";
-    } else if ($month_num == "03") {
-        $month = "November";
-    } else {
-        $month = "December";
-    }
-
-    return $month . " " . $day . ", " . $year;
-}
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +19,7 @@ function displayDate($date)
         }
     </style>
 
-    <title>Evaluation</title>
+    <title>Rate</title>
 </head>
 
 <body>
@@ -65,15 +33,11 @@ function displayDate($date)
                     ?>
                         <li><a href="library.php">Library</a></li>
                         <li><a href="store.php">Store</a></li>
+                        <li><a href="groups.php">Groups</a></li>
                         <li><a href="cart.php">Cart</a></li>
                         <li><a href="rate.php">Rate</a></li>
                         <li><a href="game_release.php">Request Game</a></li>
                         <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
-                        <li><a href="includes/logout.inc.php">Logout</a></li>
-                    <?php
-                    } else if ($_SESSION["admin"]) {
-                    ?>
-                        <li><a href="evaluate.php">Evaluate Game</a></li>
                         <li><a href="includes/logout.inc.php">Logout</a></li>
                     <?php
                     }
@@ -85,27 +49,26 @@ function displayDate($date)
     </div>
 
     <div class="center">
-        <h1>Game Evaluation</h1>
-        <form action="includes/evaluate.inc.php" method="post">
+        <h1>Rate a Game</h1>
+        <form action="includes/rate.inc.php" method="post">
             <label>Game</label>
-            <select name="evaluate-game">
+            <select name="rate-game">
                 <?php
                 $con = new DBHandler();
-                $stmt = $con->connect()->prepare("SELECT COUNT(*) FROM GAME WHERE Greenlit = 0;");
+                $stmt = $con->connect()->prepare("SELECT MAX(GameID) FROM GAME;");
                 $stmt->execute(array());
                 $total_games = $stmt->fetchColumn();
 
-                $stmt = $con->connect()->prepare("SELECT * FROM GAME WHERE Greenlit = 0;");
-                $stmt->execute(array());
-                $games = $stmt->fetchAll(); // This is all the non-greenlit games
-
                 // Start from index 1, as that is what the first game in our GAME table would start from
-                for ($i = 0; $i < $total_games; $i++) {
-                    $title = $games[$i]["Title"];
-                    $gameID = $games[$i]["GameID"];
-
+                for ($i = 1; $i <= $total_games; $i++) {
+                    $stmt = $con->connect()->prepare("SELECT Title FROM GAME WHERE GameID = ? AND Greenlit = ?;");
+                    $stmt->execute(array($i, 1));
+                    $title = $stmt->fetchColumn();
+                    if (empty($title)) {
+                        continue;
+                    }
                     echo "<option value='";
-                    echo $gameID;
+                    echo $i;
                     echo "'>";
                     echo $title;
                     echo "</option>";
@@ -114,8 +77,10 @@ function displayDate($date)
             </select>
             <br>
             <br>
-            <input type="submit" name="approve-game" value="Approve">
-            <input type="submit" name="reject-game" value="Reject">
+            <label>Score</label>
+            <input type="text" name="rate-score" placeholder="Enter Score (1-10)">
+            <br>
+            <input type="submit" name="rate-submit" value="Submit Rating">
         </form>
     </div>
 </body>

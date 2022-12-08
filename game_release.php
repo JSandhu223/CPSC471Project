@@ -11,13 +11,15 @@ session_start();
     <link rel="stylesheet" href="styles/nav.css">
     <link rel="stylesheet" href="styles/checkout.css">
     <style>
-        .center{
-           height: 460px;    
+        .center {
+            height: 460px;
         }
-        input[type="text"]{
+
+        input[type="text"] {
             color: black;
         }
-        input[name="upload"]{
+
+        input[name="upload"] {
             width: 70%;
             display: block;
             margin-right: auto;
@@ -40,7 +42,10 @@ session_start();
                     ?>
                         <li><a href="library.php">Library</a></li>
                         <li><a href="store.php">Store</a></li>
+                        <li><a href="groups.php">Groups</a></li>
                         <li><a href="cart.php">Cart</a></li>
+                        <li><a href="rate.php">Rate</a></li>
+                        <li><a href="game_release.php">Request Game</a></li>
                         <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
                         <li><a href="includes/logout.inc.php">Logout</a></li>
                     <?php
@@ -53,17 +58,31 @@ session_start();
     </div>
 
     <div class="center">
-        <h1>Request Evaluation</h1>
-        <form method="post">
+        <h1>Request Game</h1>
+        <form action="includes/game_release.inc.php" method="post">
             <label>Game Name</label>
-            <input type="text" name="gamename" required value="Pacman">
-            
-            <label>Game Genre</label>
-            <input type="text" name="rating" required value="FPS">
-            
+            <input type="text" name="game-name" required>
+
+            <label>Age Rating</label>
+            <input type="text" name="age-rating" required>
+
+            <label>Release Date</label>
+            <br>
+            <input type="date" name="release-date" required>
+            <br>
+
+            <label>Price to Sell</label>
+            <input type="text" name="price" required>
+
+            <label>Developer Name</label>
+            <input type="text" name="dev-name" required>
+
+            <label>Developer Start Date</label>
+            <br>
+            <input type="date" name="dev-start-date" required>
+
             <input type="submit" name="upload" value="(+) Upload Game Files">
-            <input type="submit" name="request-eval" value="Request Evaluation">
-            
+            <input type="submit" name="request-eval" value="Request Game">
         </form>
     </div>
 </body>

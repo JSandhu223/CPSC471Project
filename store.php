@@ -5,7 +5,7 @@ include "classes/DBHandler.php";
 
 $con = new DBHandler();
 
-$stmt = $con->connect()->prepare("SELECT * FROM GAME;");
+$stmt = $con->connect()->prepare("SELECT * FROM GAME WHERE Greenlit = 1;");
 $stmt->execute(array());
 $all_games = $stmt->fetchAll();
 
@@ -65,7 +65,10 @@ function displayDate($date)
                 ?>
                     <li><a href="library.php">Library</a></li>
                     <li><a href="store.php">Store</a></li>
+                    <li><a href="groups.php">Groups</a></li>
                     <li><a href="cart.php">Cart</a></li>
+                    <li><a href="rate.php">Rate</a></li>
+                    <li><a href="game_release.php">Request Game</a></li>
                     <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
                     <li><a href="includes/logout.inc.php">Logout</a></li>
                 <?php
@@ -117,7 +120,7 @@ function displayDate($date)
                 ?>
                 <br />
                 <form action="includes/store.inc.php" method="post">
-                    <input type="submit" name="add-to-cart" value="Add To Cart">
+                    <input type="submit" name="add-to-cart<?php echo $_SESSION["gameID"]; ?>" value="Add To Cart">
                 </form>
             </div>
         <?php

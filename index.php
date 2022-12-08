@@ -23,8 +23,16 @@ session_start();
                     ?>
                         <li><a href="library.php">Library</a></li>
                         <li><a href="store.php">Store</a></li>
+                        <li><a href="groups.php">Groups</a></li>
                         <li><a href="cart.php">Cart</a></li>
+                        <li><a href="rate.php">Rate</a></li>
+                        <li><a href="game_release.php">Request Game</a></li>
                         <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
+                        <li><a href="includes/logout.inc.php">Logout</a></li>
+                    <?php
+                    } else if (isset($_SESSION["admin"])) {
+                    ?>
+                        <li><a href="evaluate.php">Evaluate Game</a></li>
                         <li><a href="includes/logout.inc.php">Logout</a></li>
                     <?php
                     }
@@ -39,8 +47,8 @@ session_start();
         <h1>Login</h1>
         <form action="includes/login.inc.php" method="post">
             <div class="txt_field">
-                <input type="text" name="username" required>
-                <label>Username</label>
+                <input type="text" name="username-or-email" required>
+                <label>Username/Email</label>
             </div>
             <div class="txt_field">
                 <input type="password" name="password" required>
