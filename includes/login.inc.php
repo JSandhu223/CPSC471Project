@@ -22,5 +22,9 @@ if (isset($_POST["login-submit"])) {
     $loginProcedure->initiateLogin();
 
     // After signup, send the user to the home page
-    header("location: ../profile.php?message=login-success");
+    if(!$_SESSION["admin"]){
+        header("location: ../profile.php?message=login-success");
+    } else {
+        header("location: ../evaluate.php?message=login-success");
+    }
 }
