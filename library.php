@@ -38,7 +38,7 @@ $gameCount = $stmt->fetchColumn();
     <div class="navbar">
         <nav>
             <ul>
-                <li><a class="selected" href="index.php">Home</a></li>
+                <li><a class="selected" href="library.php">Home</a></li>
                 <?php
                 if (isset($_SESSION["username"])) {
                 ?>

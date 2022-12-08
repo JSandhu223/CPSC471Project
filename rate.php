@@ -27,7 +27,7 @@ include "classes/DBHandler.php";
         <nav>
             <div>
                 <ul>
-                    <li><a class="selected" href="index.php">Home</a></li>
+                    <li><a class="selected" href="rate.php">Home</a></li>
                     <?php
                     if (isset($_SESSION["username"])) {
                     ?>

@@ -36,7 +36,7 @@ session_start();
         <nav>
             <div>
                 <ul>
-                    <li><a class="selected" href="index.php">Home</a></li>
+                    <li><a class="selected" href="game_release.php">Home</a></li>
                     <?php
                     if (isset($_SESSION["username"])) {
                     ?>

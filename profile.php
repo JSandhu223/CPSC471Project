@@ -54,7 +54,7 @@ $groupCount = $stmt->fetchColumn();
         <nav>
             <div>
                 <ul>
-                    <li><a class="selected" href="index.php">Home</a></li>
+                    <li><a class="selected" href="profile.php">Home</a></li>
                     <?php
                     if (isset($_SESSION["username"])) {
                     ?>
