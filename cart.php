@@ -39,14 +39,14 @@ $games_in_cart = $stmt->fetchAll();
     <div class="navbar">
         <nav>
             <ul>
-                <li><a class="selected" href="cart.php">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <?php
                 if (isset($_SESSION["username"])) {
                 ?>
                     <li><a href="library.php">Library</a></li>
                     <li><a href="store.php">Store</a></li>
                     <li><a href="groups.php">Groups</a></li>
-                    <li><a href="cart.php">Cart</a></li>
+                    <li><a class="selected" href="cart.php">Cart</a></li>
                     <li><a href="rate.php">Rate</a></li>
                     <li><a href="game_release.php">Request Game</a></li>
                     <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
