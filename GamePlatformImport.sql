@@ -257,7 +257,7 @@ CREATE TABLE `game` (
 
 LOCK TABLES `game` WRITE;
 /*!40000 ALTER TABLE `game` DISABLE KEYS */;
-INSERT INTO `game` VALUES (1,'Sleeping Simulator','E','2022-09-30',19.99,'Hogwash',1),(2,'Awake Dogs','M','2021-08-28',19.99,'Ynos Studios',1),(3,'Full-Death','M','2022-08-09',19.99,'Lazy Games',1),(4,'Call off Duty','M','2022-06-15',9.99,'Hogwash',1),(5,'STEINS;CRACK','T','2022-02-02',29.99,'GAMES INC.',1),(6,'Gerry\'s Mod','T','2022-03-19',9.99,'FaceKick Studios',1),(8,'Lame','M','2023-08-21',19.99,'Lazy Games',0);
+INSERT INTO `game` VALUES (1,'Sleeping Simulator','E','2022-09-30',19.99,'Hogwash',1),(2,'Awake Dogs','M','2021-08-28',19.99,'Ynos Studios',1),(3,'Full-Death','M','2022-08-09',19.99,'Lazy Games',1),(4,'Call off Duty','M','2022-06-15',9.99,'Hogwash',1),(5,'STEINS;CRACK','T','2022-02-02',29.99,'GAMES INC.',1),(6,'Gerry\'s Mod','T','2022-03-19',9.99,'FaceKick Studios',1);
 /*!40000 ALTER TABLE `game` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -434,4 +434,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-07  2:10:51
+-- Dump completed on 2022-12-07 20:30:13
