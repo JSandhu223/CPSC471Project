@@ -82,6 +82,7 @@ class SignupHandler extends DBHandler
         return $alreadyExists;
     }
 
+    // Creates a library for a new user
     public function createLibrary($username) {
         $stmt = $this->connect()->prepare("SELECT UserID FROM USER WHERE Username = ?;");
         $stmt->execute(array($username));
@@ -91,6 +92,7 @@ class SignupHandler extends DBHandler
         $stmt->execute(array($userID));
     }
 
+    // Creates a cart for a new user
     public function createCart($username) {
         $stmt = $this->connect()->prepare("SELECT UserID FROM USER WHERE Username = ?;");
         $stmt->execute(array($username));

@@ -42,20 +42,25 @@ if (isset($_POST["checkout-submit"])) {
     }
 
     $con = new DBHandler();
+
+    // Get the user ID
     $stmt = $con->connect()->prepare("SELECT UserID FROM USER WHERE Username = ?;");
     $stmt->execute(array($_SESSION["username"]));
     $userID = $stmt->fetchColumn();
     echo "User ID: " . $userID . "<br/>";
 
+    // Get the library ID
     $stmt = $con->connect()->prepare("SELECT LibraryID FROM LIBRARY WHERE UserID = ?;");
     $stmt->execute(array($userID));
     $libraryID = $stmt->fetchColumn();
     echo "Library ID: " . $libraryID . "<br/>";
 
+    // Check if the game is already in user's library
     $stmt = $con->connect()->prepare("SELECT GameID FROM BELONG_TO WHERE LibraryID = ?;");
     $stmt->execute(array($libraryID));
     $result = $stmt->fetchAll();
 
+    // Display errori f true
     if (count($result) >= 1) {
         echo "<script type='text/javascript'>alert('Game Already In Library.');location='../checkout.php'</script>";
         exit();
@@ -66,6 +71,7 @@ if (isset($_POST["checkout-submit"])) {
     $stmt = $con->connect()->prepare("INSERT INTO BELONG_TO (LibraryID, GameID) VALUES (?, ?);");
     $stmt->execute(array($libraryID, $gameID));
 
+    // Delete the game from the cart after purchase
     $stmt = $con->connect()->prepare("DELETE FROM ADDED_TO WHERE GameID = ?;");
     $stmt->execute(array($gameID));
 

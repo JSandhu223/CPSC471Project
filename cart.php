@@ -18,6 +18,7 @@ $stmt = $con->connect()->prepare("SELECT CartID FROM CART WHERE UserID = ?;");
 $stmt->execute(array($session_userID));
 $session_cartID = $stmt->fetchColumn();
 
+// Get the amount of games currently in the cart
 $stmt = $con->connect()->prepare("SELECT GameID FROM ADDED_TO WHERE CartID = ?;");
 $stmt->execute(array($session_cartID));
 $games_in_cart = $stmt->fetchAll();

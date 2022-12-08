@@ -5,6 +5,7 @@ include "classes/DBHandler.php";
 
 $con = new DBHandler();
 
+// Get all the game groups
 $stmt = $con->connect()->prepare("SELECT * FROM COMMUNITY_GROUP;");
 $stmt->execute(array());
 $all_groups = $stmt->fetchAll();

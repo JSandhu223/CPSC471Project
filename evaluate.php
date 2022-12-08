@@ -90,16 +90,19 @@ function displayDate($date)
             <select name="evaluate-game">
                 <?php
                 $con = new DBHandler();
-
+                
+                // Grab the admin ID
                 $stmt = $con->connect()->prepare("SELECT AdminID FROM ADMINISTRATOR WHERE Email = ?;");
                 $adminEmail = $_SESSION["admin"];
                 $stmt->execute(array($adminEmail));
                 $adminID = $stmt->fetchColumn();
 
+                // Get the total number of games to evaluate
                 $stmt = $con->connect()->prepare("SELECT COUNT(*) FROM EVALUATES WHERE AdminID = ?;");
                 $stmt->execute(array($adminID));
                 $total_games = $stmt->fetchColumn();
 
+                // Get all non-greenlit games
                 $stmt = $con->connect()->prepare("SELECT GameID FROM EVALUATES WHERE AdminID = ?;");
                 $stmt->execute(array($adminID));
                 $games = $stmt->fetchAll(); // This is all the non-greenlit games
