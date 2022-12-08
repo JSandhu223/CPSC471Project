@@ -59,7 +59,6 @@ function displayDate($date)
         <nav>
             <div>
                 <ul>
-                    <li><a class="selected" href="index.php">Home</a></li>
                     <?php
                     if (isset($_SESSION["username"])) {
                     ?>
@@ -73,7 +72,7 @@ function displayDate($date)
                     <?php
                     } else if ($_SESSION["admin"]) {
                     ?>
-                        <li><a href="evaluate.php">Evaluate Game</a></li>
+                        <li><a class="selected" href="evaluate.php">Evaluate Game</a></li>
                         <li><a href="includes/logout.inc.php">Logout</a></li>
                     <?php
                     }
