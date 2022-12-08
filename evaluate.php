@@ -91,18 +91,26 @@ function displayDate($date)
             <select name="evaluate-game">
                 <?php
                 $con = new DBHandler();
-                $stmt = $con->connect()->prepare("SELECT COUNT(*) FROM GAME WHERE Greenlit = 0;");
-                $stmt->execute(array());
+
+                $stmt = $con->connect()->prepare("SELECT AdminID FROM ADMINISTRATOR WHERE Email = ?;");
+                $adminEmail = $_SESSION["admin"];
+                $stmt->execute(array($adminEmail));
+                $adminID = $stmt->fetchColumn();
+
+                $stmt = $con->connect()->prepare("SELECT COUNT(*) FROM EVALUATES WHERE AdminID = ?;");
+                $stmt->execute(array($adminID));
                 $total_games = $stmt->fetchColumn();
 
-                $stmt = $con->connect()->prepare("SELECT * FROM GAME WHERE Greenlit = 0;");
-                $stmt->execute(array());
+                $stmt = $con->connect()->prepare("SELECT GameID FROM EVALUATES WHERE AdminID = ?;");
+                $stmt->execute(array($adminID));
                 $games = $stmt->fetchAll(); // This is all the non-greenlit games
 
-                // Start from index 1, as that is what the first game in our GAME table would start from
                 for ($i = 0; $i < $total_games; $i++) {
-                    $title = $games[$i]["Title"];
                     $gameID = $games[$i]["GameID"];
+
+                    $stmt = $con->connect()->prepare("SELECT Title FROM GAME WHERE GameID = ?;");
+                    $stmt->execute(array($gameID));
+                    $title = $stmt->fetchColumn();
 
                     echo "<option value='";
                     echo $gameID;
