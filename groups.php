@@ -55,7 +55,6 @@ $all_groups = $stmt->fetchAll();
         <form action="includes/groups.inc.php" method="post">
             <label>Game Groups</label>
             <select name="group-name">
-                <option value="" disabled selected>Select a group to join</option>
                 <?php
                 $con = new DBHandler();
                 $stmt = $con->connect()->prepare("SELECT MAX(GameID) FROM GAME;");
