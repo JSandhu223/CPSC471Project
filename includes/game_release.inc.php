@@ -43,8 +43,42 @@ if (isset($_POST["request-eval"])) {
         $stmt->execute(array($devName, $devStartDate));
     }
 
-    $stmt = $con->connect()->prepare("INSERT INTO GAME (Title, AgeRating, ReleaseDate, Price, Dname) VALUES (?, ?, ?, ?, ?)");
+    // Check if the game already exists
+    $stmt = $con->connect()->prepare("SELECT Title FROM GAME WHERE Title = ?;");
+    $stmt->execute(array($title));
+    $result = $stmt->fetchColumn();
+    if (!empty($result)) {
+        echo "<script type='text/javascript'>alert('Game already under evaluation!');location='../game_release.php'</script>";
+        exit();
+    }
+
+    // Then add the game to our GAME table. Greenlit is set to FALSE/0 by default.
+    $stmt = $con->connect()->prepare("INSERT INTO GAME (Title, AgeRating, ReleaseDate, Price, Dname) VALUES (?, ?, ?, ?, ?);");
     $stmt->execute(array($title, $ageRating, $releaseDate, $price, $devName));
+
+    // Now grab the gameID of the game we just inserted
+    $stmt = $con->connect()->prepare("SELECT GameID FROM GAME WHERE Title = ?;");
+    $stmt->execute(array($title));
+    $gameID = $stmt->fetchColumn();
+
+    // Grab all the admins IDs from our ADMINISTRATOR table
+    $stmt = $con->connect()->prepare("SELECT AdminID FROM ADMINISTRATOR;");
+    $stmt->execute(array());
+    $result = $stmt->fetchAll();
+
+    // Create an array of admin IDs
+    $admins = array();
+    for ($i = 0; $i < count($result); $i++) {
+        array_push($admins, $result[$i]["AdminID"]);
+    }
+    
+    // Pick a random admin from our array of admins
+    $adminID = $admins[array_rand($admins)];
+
+    // Now add the game to the EVALUATES table.
+    // The game will be assigned for evaluation to that random adminID that was selected from the array
+    $stmt = $con->connect()->prepare("INSERT INTO EVALUATES (AdminID, GameID) VALUES (?, ?);");
+    $stmt->execute(array($adminID, $gameID));
 
     echo "<script type='text/javascript'>alert('Game request successfully sent!');location='../game_release.php'</script>";
 }

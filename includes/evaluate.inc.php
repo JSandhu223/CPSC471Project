@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 include "../classes/DBHandler.php";
 
@@ -19,6 +20,13 @@ if (isset($_POST["approve-game"])) {
 
 // If the admin clicks Reject
 if (isset($_POST["reject-game"])) {
+    $stmt = $con->connect()->prepare("SELECT AdminID FROM ADMINISTRATOR WHERE Email = ?;");
+    $stmt->execute(array($_SESSION["admin"]));
+    $adminID = $stmt->fetchColumn();
+    
+    $stmt = $con->connect()->prepare("DELETE FROM EVALUATES WHERE AdminID = ? AND GameID = ?;");
+    $stmt->execute(array($adminID, $selectedGameID));
+
     $stmt = $con->connect()->prepare("DELETE FROM GAME WHERE GameID = ?;");
     $stmt->execute(array($selectedGameID));
 
