@@ -5,6 +5,7 @@ include "classes/DBHandler.php";
 
 $con = new DBHandler();
 
+// Get all games that are currently greenlit for sale.
 $stmt = $con->connect()->prepare("SELECT * FROM GAME WHERE Greenlit = 1;");
 $stmt->execute(array());
 $all_games = $stmt->fetchAll();

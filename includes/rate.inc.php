@@ -33,6 +33,7 @@ if (isset($_POST["rate-submit"])) {
         exit();
     }
 
+    // Insert into rating table
     $stmt = $con->connect()->prepare("INSERT INTO RATING (Score, UserID, GameID) VALUES (?, ?, ?)");
     $stmt->execute(array($score, $userID, $selectedGameID));
 }

@@ -4,14 +4,18 @@ session_start();
 include "classes/DBHandler.php";
 
 $con = new DBHandler();
+
+// Get the user ID
 $stmt = $con->connect()->prepare("SELECT UserID FROM USER WHERE Username = ?;");
 $stmt->execute(array($_SESSION["username"]));
 $userID = $stmt->fetchColumn();
 
+// Get the library ID
 $stmt = $con->connect()->prepare("SELECT LibraryID FROM LIBRARY WHERE UserID = ?;");
 $stmt->execute(array($userID));
 $libraryID = $stmt->fetchColumn();
 
+// Get the list of games that a user owns
 $stmt = $con->connect()->prepare("SELECT GameID FROM BELONG_TO WHERE LibraryID = ?;");
 $stmt->execute(array($libraryID));
 $games_in_library = $stmt->fetchAll();
@@ -60,6 +64,7 @@ $gameCount = $stmt->fetchColumn();
     <section class="container">
         <?php
         for ($i = 0; $i < count($games_in_library); $i++) {
+            // Get the game based on the ID
             $stmt = $con->connect()->prepare("SELECT * FROM GAME WHERE GameID = ?;");
             $stmt->execute(array($games_in_library[$i]["GameID"]));
             $game_info = $stmt->fetchAll();

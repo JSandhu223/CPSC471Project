@@ -14,7 +14,7 @@ $stmt = $con->connect()->prepare("SELECT GameCount FROM LIBRARY WHERE UserID = ?
 $stmt->execute(array($userID));
 $gameCount = $stmt->fetchColumn();
 
-
+// Now get the amount of groups that the user is in based on their user ID
 $stmt = $con->connect()->prepare("SELECT COUNT(*) FROM MEMBER WHERE UserID = ?;");
 $stmt->execute(array($userID));
 $groupCount = $stmt->fetchColumn();
