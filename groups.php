@@ -31,17 +31,16 @@ $all_groups = $stmt->fetchAll();
     <div class="navbar">
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
                 <?php
                 if (isset($_SESSION["username"])) {
                 ?>
+                    <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
                     <li><a href="library.php">Library</a></li>
                     <li><a href="store.php">Store</a></li>
                     <li><a class="selected" href="groups.php">Groups</a></li>
                     <li><a href="cart.php">Cart</a></li>
                     <li><a href="rate.php">Rate</a></li>
                     <li><a href="game_release.php">Request Game</a></li>
-                    <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
                     <li><a href="includes/logout.inc.php">Logout</a></li>
                 <?php
                 }
