@@ -9,6 +9,12 @@ $selectedGameID = $_POST["evaluate-game"]; // This is the value of the <option> 
 
 // If the admin clicks Approve
 if (isset($_POST["approve-game"])) {
+    $stmt = $con->connect()->prepare("SELECT AdminID FROM ADMINISTRATOR WHERE Email = ?;");
+    $stmt->execute(array($_SESSION["admin"]));
+    $adminID = $stmt->fetchColumn();
+    
+    $stmt = $con->connect()->prepare("DELETE FROM EVALUATES WHERE AdminID = ? AND GameID = ?;");
+    $stmt->execute(array($adminID, $selectedGameID));
 
     // Set a game to be approved
     $stmt = $con->connect()->prepare("UPDATE GAME SET Greenlit = 1 WHERE GameID = ?;");
